@@ -74,10 +74,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add the form data to the array
+if (Array.isArray(formData)) {
     formData.push({ name, email, password, dob, acceptTerms });
-
-    // Add the form data to the table
-    addFormDataToTable(formData[formData.length - 1]);
-
+  } else {
+    formData = [{ name, email, password, dob, acceptTerms }];
+  }
+  
+  // Add the form data to the table
+  addFormDataToTable(formData[formData.length - 1]);
+  
+  // Save the updated form data to local storage
+  localStorage.setItem('formData', JSON.stringify(formData));
+  
   });
 });
